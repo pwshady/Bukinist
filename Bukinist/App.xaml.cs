@@ -1,4 +1,5 @@
-﻿using Bukinist.Services;
+﻿using Bukinist.Data;
+using Bukinist.Services;
 using Bukinist.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +25,7 @@ namespace Bukinist
 
         public static IServiceProvider Services => Host.Services;
         internal static void ConfigureServices(HostBuilderContext host, IServiceCollection services) => services
+            .AddDatabade(host.Configuration.GetSection("Database"))
             .AddServices()
             .AddViewModels()
             ;
