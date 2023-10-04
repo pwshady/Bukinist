@@ -33,7 +33,12 @@ namespace Bukinist
         protected override async void OnStartup(StartupEventArgs e)
         {
             var host = Host;
-            base.OnStartup(e);
+
+            using (var scope = Services.CreateScope())
+                await scope.ServiceProvider.GetRequiredService<DbInitializer>().InitializeAsync();
+            
+
+                base.OnStartup(e);
             await host.StartAsync();
         }
 

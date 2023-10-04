@@ -40,6 +40,7 @@ namespace Bukinist.Data
                         throw new InvalidOperationException($"Тип подключения {type} не поддерживается");
                 }
             })
+            .AddTransient<DbInitializer>()
             ;
 
     }
